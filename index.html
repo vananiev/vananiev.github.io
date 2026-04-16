@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -57,6 +57,7 @@
             transition: transform 0.1s ease, opacity 0.2s;
             opacity: 0.65;
             line-height: 1;
+            cursor: pointer;
         }
 
         .lang-link.active {
@@ -226,11 +227,6 @@
             margin-bottom: 0.4rem;
         }
 
-        .education small {
-            font-size: 0.75rem;
-            color: #777;
-        }
-
         .achievements {
             font-size: 0.85rem;
             margin-top: 0.5rem;
@@ -295,19 +291,13 @@
                 gap: 0.2rem;
             }
         }
-
-        @media (prefers-reduced-motion: no-preference) {
-            .lang-link:not(.active):hover {
-                transition: transform 0.12s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-            }
-        }
     </style>
 </head>
 <body>
 
 <div class="lang-switcher">
-    <a href="#" class="lang-link active" title="English" aria-label="English version">🇺🇸</a>
-    <a href="index-ru.html" class="lang-link" title="Русский" aria-label="Русская версия">🇷🇺</a>
+    <span class="lang-link active" data-lang="en" title="English">🇺🇸</span>
+    <span class="lang-link" data-lang="ru" title="Русский">🇷🇺</span>
 </div>
 
 <div class="container">
@@ -316,97 +306,224 @@
             <img id="userPhoto" src="photo.png" alt="photo">
         </div>
         <div class="name">
-            <h1>Vitalii Ananiev</h1>
-            <div class="tagline">Concurrency, algorithms, high‑load systems</div>
+            <h1 id="name"></h1>
+            <div class="tagline" id="tagline"></div>
         </div>
     </div>
 
     <div class="section">
-        <div class="section-title">About me</div>
+        <div class="section-title" id="aboutTitle"></div>
         <div class="text">
-            <p>I'm passionate about high‑load systems where precision and fault tolerance are critical. My interests
-                span finance, trading, medicine, biology, global challenges at the cutting edge of science, alternative
-                energy, and aerospace</p>
+            <p id="aboutText"></p>
             <div class="github-link">
                 <i class="fab fa-github"></i>
-                <a href="https://github.com/spacious-team/investbook" target="_blank">Investbook</a>
+                <a href="https://github.com/spacious-team/investbook">Investbook</a>
             </div>
             <div class="github-link">
                 <i class="fab fa-github"></i>
-                <a href="https://github.com/NeuroMachinesLab/perceptron" target="_blank">Neuro Machines Lab</a>
+                <a href="https://github.com/NeuroMachinesLab/perceptron">Neuro Machines Lab</a>
             </div>
             <div class="github-link">
                 <i class="fab fa-github"></i>
-                <a href="https://github.com/typetools/checker-framework" target="_blank">Checker Framework</a>
+                <a href="https://github.com/typetools/checker-framework">Checker Framework</a>
             </div>
             <div class="github-link">
                 <i class="fab fa-github"></i>
-                <a href="https://github.com/spring-projects/spring-framework" target="_blank">Spring Framework</a>
+                <a href="https://github.com/spring-projects/spring-framework">Spring Framework</a>
             </div>
         </div>
     </div>
 
     <div class="section">
-        <div class="section-title">Tech stack</div>
-        <div class="tech-list" id="techStack"></div>
+        <div class="section-title" id="techTitle"></div>
+        <div class="tech-list" id="techStack">
+            <span class="tech">Spring Boot</span>
+            <span class="tech">Spring Cloud</span>
+            <span class="tech">Netflix Eureka</span>
+            <span class="tech">Spring Cloud Config</span>
+            <span class="tech">Kafka</span>
+            <span class="tech">Hibernate</span>
+            <span class="tech">JPA</span>
+            <span class="tech">Elasticsearch</span>
+            <span class="tech">Tarantool</span>
+            <span class="tech">ClickHouse</span>
+            <span class="tech">SQL</span>
+            <span class="tech">Flyway</span>
+            <span class="tech">Docker</span>
+            <span class="tech">Grafana</span>
+            <span class="tech">Prometheus</span>
+            <span class="tech">Spring Observability</span>
+            <span class="tech">Zipkin</span>
+            <span class="tech">Linux</span>
+        </div>
     </div>
 
     <div class="section education">
-        <div class="section-title">Education</div>
+        <div class="section-title" id="educationTitle"></div>
         <div class="exp-item">
             <div class="exp-role">
-                <span>Nizhny Novgorod State Technical University named after R.E. Alekseev</span>
-                <span class="exp-date">2007 - 2017</span>
+                <span id="universityName"></span>
+                <span class="exp-date" id="educationDates"></span>
             </div>
             <div class="exp-detail">
-                <p>PhD in Technical Sciences</p>
-                <div class="achievements">
-                    <ul>28 publications (half in international journals), author of patents and a book.
-                        Top performer in olympiads, including:
-                        <li>1st place - University-wide professional olympiad.</li>
-                        <li>Top 4 (Programming), Top 10 (Mathematics), Top 20 (Physics) - Regional level.</li>
-                        <li> Prize winner - Biology and Chemistry.</li>
-                    </ul>
-                </div>
+                <p id="degreeText"></p>
+                <div class="achievements" id="achievementsHtml"></div>
             </div>
         </div>
     </div>
 
     <div class="section">
-        <div class="section-title">Experience</div>
+        <div class="section-title" id="experienceTitle"></div>
         <div class="exp-item">
             <div class="exp-role">
-                <span>Team Lead, Backend development</span>
-                <span class="exp-date">2015 - present</span>
+                <span id="exp1Role"></span>
+                <span class="exp-date" id="exp1Date"></span>
             </div>
         </div>
         <div class="exp-item">
             <div class="exp-role">
-                <span>DevOps Lead, CI/CD</span>
-                <span class="exp-date">2011 - 2019</span>
+                <span id="exp2Role"></span>
+                <span class="exp-date" id="exp2Date"></span>
             </div>
         </div>
     </div>
 
     <div class="links">
         <a href="mailto:post2ananiev@gmail.com"><i class="far fa-envelope"></i> post2ananiev@gmail.com</a>
-        <a href="https://github.com/vananiev" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-        <a href="#"><i class="fas fa-map-marker-alt"></i> Nizhny Novgorod</a>
+        <a href="https://github.com/vananiev"><i class="fab fa-github"></i> GitHub</a>
+        <a href="#" id="linkLocation"><i class="fas fa-map-marker-alt"></i> <span></span></a>
     </div>
 
     <footer>Highload · AI · Open Source</footer>
 </div>
 
 <script>
-    const technologies = [
-        "Spring Boot", "Spring Cloud", "Netflix Eureka", "Spring Cloud Config", "Kafka", "Hibernate", "JPA",
-        "Elasticsearch", "Tarantool", "ClickHouse", "SQL", "Flyway", "Docker", "Grafana",
-        "Prometheus", "Spring Observability", "Zipkin", "Linux"
-    ];
-    const techContainer = document.getElementById("techStack");
-    if (techContainer) {
-        techContainer.innerHTML = technologies.map(t => `<span class="tech">${t}</span>`).join("");
+    // Английский язык (основной)
+    const enContent = {
+        name: "Vitalii Ananiev",
+        tagline: "Concurrency, algorithms, high‑load systems",
+        aboutTitle: "About me",
+        aboutText: `I'm passionate about high‑load systems where precision and fault tolerance are critical.
+                    My interests span finance, trading, medicine, biology, global challenges at the cutting edge
+                    of science, alternative energy, and aerospace`,
+        techTitle: "Tech stack",
+        educationTitle: "Education",
+        universityName: "Nizhny Novgorod State Technical University named after R.E. Alekseev",
+        educationDates: "2007 - 2017",
+        degreeText: "PhD in Technical Sciences",
+        achievementsHtml: `
+                    <ul>
+                        28 publications, including international journals. Author of patents and a book.
+                        Top performer in Olympiads, including:
+                        <li>1st place - University-wide professional olympiad.</li>
+                        <li>Top 4 (Programming), Top 10 (Mathematics), Top 20 (Physics) - Regional level.</li>
+                        <li>Prize winner - Biology and Chemistry.</li>
+                    </ul>`,
+        experienceTitle: "Experience",
+        exp1Role: "Team Lead, Backend development",
+        exp1Date: "2015 - present",
+        exp2Role: "DevOps Lead, CI/CD",
+        exp2Date: "2011 - 2019",
+        linkLocationText: "Nizhny Novgorod",
+        pageTitle: "Vitalii Ananiev",
+        htmlLang: "en"
+    };
+
+    // Русский язык
+    const ruContent = {
+        name: "Виталий Ананьев",
+        tagline: "Многопоточность, алгоритмы, высоконагруженные системы",
+        aboutTitle: "О себе",
+        aboutText: `Привлекают высоконагруженные решения, требующие высокой точности и безошибочности, сфера финансов и
+                    рынков, медицины, биологии, глобальные задачи на переднем крае науки, альтернативная энергетика,
+                    космическая промышленность`,
+        techTitle: "Технологический стек",
+        educationTitle: "Образование",
+        universityName: "Нижегородский государственный технический университет им. Р.Е. Алексеева",
+        educationDates: "2007 - 2017",
+        degreeText: "Кандидат технических наук",
+        achievementsHtml: `
+                    <ul>
+                        28 публикаций, включая международные издания. Автор патентов и книги.
+                        Лучшие результаты на олимпиадах, в том числе:
+                        <li>1 место - профильная университетская олимпиада.</li>
+                        <li>Топ-4 (Программирование), Топ-10 (Математика), Топ-20 (Физика) - региональный уровень.</li>
+                        <li>Призер олимпиад по биологии и химии.</li>
+                    </ul>`,
+        experienceTitle: "Профессиональная деятельность",
+        exp1Role: "Team Lead, бекэнд разработка",
+        exp1Date: "2015 - н.в.",
+        exp2Role: "DevOps Lead, CI/CD",
+        exp2Date: "2011 - 2019",
+        linkLocationText: "Нижний Новгород",
+        pageTitle: "Виталий Ананьев",
+        htmlLang: "ru"
+    };
+
+    let currentLang = 'en';
+
+    function updateLanguage(lang) {
+        const content = lang === 'en' ? enContent : ruContent;
+
+        // Обновляем все текстовые элементы (в разметке изначально пусто)
+        document.getElementById('name').textContent = content.name;
+        document.getElementById('tagline').textContent = content.tagline;
+        document.getElementById('aboutTitle').textContent = content.aboutTitle;
+        document.getElementById('aboutText').textContent = content.aboutText;
+        document.getElementById('techTitle').textContent = content.techTitle;
+        document.getElementById('educationTitle').textContent = content.educationTitle;
+        document.getElementById('universityName').textContent = content.universityName;
+        document.getElementById('educationDates').textContent = content.educationDates;
+        document.getElementById('degreeText').textContent = content.degreeText;
+        document.getElementById('achievementsHtml').innerHTML = content.achievementsHtml;
+        document.getElementById('experienceTitle').textContent = content.experienceTitle;
+        document.getElementById('exp1Role').textContent = content.exp1Role;
+        document.getElementById('exp1Date').textContent = content.exp1Date;
+        document.getElementById('exp2Role').textContent = content.exp2Role;
+        document.getElementById('exp2Date').textContent = content.exp2Date;
+
+        // Обновляем город
+        const locationSpan = document.querySelector('#linkLocation span');
+        if (locationSpan) locationSpan.textContent = content.linkLocationText;
+
+        // Обновляем активный класс у переключателей
+        document.querySelectorAll('.lang-link').forEach(link => {
+            const linkLang = link.getAttribute('data-lang');
+            if (linkLang === lang) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
+        });
+
+        document.documentElement.lang = content.htmlLang;
+        document.title = content.pageTitle;
+        currentLang = lang;
     }
+
+    // Обработчики на переключатели языка
+    document.querySelectorAll('.lang-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const lang = link.getAttribute('data-lang');
+            if (lang === currentLang) return;
+
+            // Плавная анимация
+            const container = document.querySelector('.container');
+            container.style.transition = 'opacity 0.1s ease';
+            container.style.opacity = '0.5';
+            setTimeout(() => {
+                updateLanguage(lang);
+                container.style.opacity = '1';
+            }, 80);
+            setTimeout(() => {
+                container.style.opacity = '';
+            }, 150);
+        });
+    });
+
+    // Инициализация (английский по умолчанию)
+    updateLanguage('en');
 </script>
 </body>
 </html>
